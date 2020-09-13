@@ -132,28 +132,28 @@
 		    } else {
 		    $('#gcaperror').hide();
 		    $.ajax({
-				url:"backend.php",
-		   		method:"POST",
-		   		data:{sgtcnt_name:sgtcnt_name,
-				sgtcnt_email:sgtcnt_email,
-				sgtcnt_subject:sgtcnt_subject,
-				sgtcnt_message:sgtcnt_message
-			},
+			// 	url:"backend.php",
+		 //   		method:"POST",
+		 //   		data:{sgtcnt_name:sgtcnt_name,
+			// 	sgtcnt_email:sgtcnt_email,
+			// 	sgtcnt_subject:sgtcnt_subject,
+			// 	sgtcnt_message:sgtcnt_message
+			// },
 		        success:function(result){
-		        // console.log(result);
-		            if (result == "success") {
-		            	$('input').val('');
-		                $('textarea').val('');
-						$(".form-inputs").css("display", "none");
-						$(".box p").css("display", "none");
-						$(".contactform").find(".output_message").addClass("success");
-						$(".output_message").text("Message Sent!");
-					} else {
-						$(".tabs-container").css("height", "440px");
+		        console.log(result);
+		   //          if (result == "success") {
+		   //          	$('input').val('');
+		   //              $('textarea').val('');
+					// 	$(".form-inputs").css("display", "none");
+					// 	$(".box p").css("display", "none");
+					// 	$(".contactform").find(".output_message").addClass("success");
+					// 	$(".output_message").text("Message Sent!");
+					// } else {
+					// 	$(".tabs-container").css("height", "440px");
 
-						$(".contactform").find(".output_message").addClass("error");
-						$(".output_message").text("Error Sending!");
-					}
+					// 	$(".contactform").find(".output_message").addClass("error");
+					// 	$(".output_message").text("Error Sending!");
+					// }
 		        }
 		        });
 		    }
