@@ -5,17 +5,17 @@
   $sgtcnt_subject = $_POST["sgtcnt_subject"];
   $sgtcnt_message = $_POST["sgtcnt_message"];
 
-if($sgtcnt_name == "" && $sgtcnt_email == ""){
+if($sgtcnt_name != "" && $sgtcnt_email != ""){
 
-  $to = 'saugatasil@gmail.com';
-  $subject = 'hello';
-  $headers = "From: saugatasil@gmail.com";
-  $message = 'Hello World';
+  // $to = 'saugatasil@gmail.com';
+  // $subject = 'hello';
+  // $headers = "From: saugatasil@gmail.com";
+  // $message = 'Hello World';
 
-  if(mail($to, $subject, $message, $headers)){
+  // if(mail($to, $subject, $message, $headers)){
     echo "success";
   }else{
     echo "error";
   }
-}
+// }
 ?>
