@@ -13,9 +13,12 @@ if($sgtcnt_name != "" && $sgtcnt_email != ""){
   // $message = 'Hello World';
 
   // if(mail($to, $subject, $message, $headers)){
+  //   echo "success";
+  // }else{
+  //   echo "error";
+  // }
     echo "success";
   }else{
     echo "error";
   }
-// }
 ?>
