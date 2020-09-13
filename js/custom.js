@@ -95,16 +95,55 @@
 		/*  AJAX CONTACT FORM
         /* ----------------------------------------------------------- */
 
-		$(".contactform").on("submit", function() {
-			$(".output_message").text("Sending...");
+	    $('#gcaperror').hide();
 
-			var form = $(this);
-			$.ajax({
-				url: form.attr("action"),
-				method: form.attr("method"),
-				data: form.serialize(),
-				success: function(result) {
-					if (result == "success") {
+		$(".contactform").on("submit", function() {
+		    var sgtcnt_name = $("#sgtcnt_name").val();
+		    var sgtcnt_email = $("#sgtcnt_email").val();
+		    var sgtcnt_subject = $("#sgtcnt_subject").val();
+		    var sgtcnt_message = $("#sgtcnt_message").val();
+
+		    if (sgtcnt_name == "") {
+		        $("input#sgtcnt_name").css({"border-color": "#ff0014"});
+		        $("input#sgtcnt_name").focus();
+		        return false;
+		    }else{
+		        $("input#sgtcnt_name").css({"border-color": "#a9a9a9"});
+		    }
+		    if (sgtcnt_email == "") {
+		        $("input#sgtcnt_email").css({"border-color": "#ff0014"});
+		        $("input#sgtcnt_email").focus();
+		        return false;
+		    }else{
+		        $("input#sgtcnt_email").css({"border-color": "#a9a9a9"});
+		    }
+		    var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+
+		    if (!email_regex.test(sgtcnt_email)) {
+		        $("input#sgtcnt_email").css({"border-color": "#ff0014"});
+		        $("input#sgtcnt_email").focus();
+		        return false;
+		    }else{
+		        $("input#sgtcnt_email").css({"border-color": "#a9a9a9"});
+		    }
+		    if(grecaptcha.getResponse().length === 0){
+		    $('#gcaperror').show();
+		    setTimeout(function(){ $('#gcaperror').hide(); }, 3000);
+		    } else {
+		    $('#gcaperror').hide();
+		    $.ajax({
+				url:"backend.php",
+		   		method:"POST",
+		   		data:{sgtcnt_name:sgtcnt_name,
+				sgtcnt_email:sgtcnt_email,
+				sgtcnt_subject:sgtcnt_subject,
+				sgtcnt_message:sgtcnt_message
+			},
+		        success:function(result){
+		        // console.log(result);
+		            if (result == "success") {
+		            	$('input').val('');
+		                $('textarea').val('');
 						$(".form-inputs").css("display", "none");
 						$(".box p").css("display", "none");
 						$(".contactform").find(".output_message").addClass("success");
@@ -115,10 +154,34 @@
 						$(".contactform").find(".output_message").addClass("error");
 						$(".output_message").text("Error Sending!");
 					}
-				}
-			});
+		        }
+		        });
+		    }
 
-			return false;
+
+			// $(".output_message").text("Sending...");
+
+			// var form = $(this);
+			// $.ajax({
+			// 	url: form.attr("action"),
+			// 	method: form.attr("method"),
+			// 	data: form.serialize(),
+			// 	success: function(result) {
+			// 		if (result == "success") {
+			// 			$(".form-inputs").css("display", "none");
+			// 			$(".box p").css("display", "none");
+			// 			$(".contactform").find(".output_message").addClass("success");
+			// 			$(".output_message").text("Message Sent!");
+			// 		} else {
+			// 			$(".tabs-container").css("height", "440px");
+
+			// 			$(".contactform").find(".output_message").addClass("error");
+			// 			$(".output_message").text("Error Sending!");
+			// 		}
+			// 	}
+			// });
+
+			// return false;
 		});
 
 	});
@@ -138,5 +201,9 @@
 		}
 	});
 
+
+		/* ----------------------------------------------------------- */
+		/*  KEYBOARD NAVIGATION IN PORTFOLIO SLIDESHOW
+        /* ----------------------------------------------------------- */
 
 })(jQuery);
