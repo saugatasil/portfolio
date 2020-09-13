@@ -1809,6 +1809,13 @@ body.light hr.separator {
     background-color: #252525;
     opacity: .8;
 }
+.rc-anchor-light.rc-anchor-normal {
+    border: none !important;
+}
+.rc-anchor-light {
+    background: #252525 !important;
+    color: #828282 !important;
+}
 @media (max-width: 720px) {
 .certificate_box  a .certifi_details p,
 .certificate_box  a span.date {
