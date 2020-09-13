@@ -97,7 +97,7 @@
 
 	    $('#gcaperror').hide();
 
-		$("#contactform").click(function() {
+		$("#sgtcnt_submit").click(function() {
 		    var sgtcnt_name = $("#sgtcnt_name").val();
 		    var sgtcnt_email = $("#sgtcnt_email").val();
 		    var sgtcnt_subject = $("#sgtcnt_subject").val();
@@ -125,12 +125,12 @@
 		        return false;
 		    }else{
 		        $("input#sgtcnt_email").css({"border-color": "#a9a9a9"});
-		    // }
-		    // if(grecaptcha.getResponse().length === 0){
-		    // $('#gcaperror').show();
-		    // setTimeout(function(){ $('#gcaperror').hide(); }, 3000);
-		    // } else {
-		    // $('#gcaperror').hide();
+		    }
+		    if(grecaptcha.getResponse().length === 0){
+		    $('#gcaperror').show();
+		    setTimeout(function(){ $('#gcaperror').hide(); }, 3000);
+		    } else {
+		    $('#gcaperror').hide();
 		    $.ajax({
 				url:"backend.php",
 		   		method:"POST",
